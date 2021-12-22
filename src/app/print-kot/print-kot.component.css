@@ -1,0 +1,29 @@
+/* .headItems {
+  margin-left: 10mm;
+  font-size: large;
+}
+.bodydiv {
+  margin-left: 4px;
+} */
+.printdiv {
+  max-height: 50mm;
+}
+
+.itemname {
+  /* position: absolute; */
+  left: 0px;
+  align-content: flex-start;
+}
+.qty {
+  position: absolute;
+  left: 100px;
+}
+.quantity {
+  margin-left: 110px;
+}
+.containdiv {
+  line-height: 80%;
+}
+.containdivNeg {
+  line-height: 110%;
+}

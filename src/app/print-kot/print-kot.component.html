@@ -1,0 +1,28 @@
+<div class="div containdiv">
+  <div class="div">
+    <div class="row">
+      <div class="col">{{ timePrint }}</div>
+      <div class="col">Table Number {{ tableNumber }}</div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col">#</div>
+      <div class="col">ITEM</div>
+      <div class="col">QUANTITY</div>
+    </div>
+    ----------------------------------------------------------------------
+    <div class="containdivNeg">
+      <div *ngFor="let option of itemDetails; index as i">
+        <div class="row">
+          <div class="col">{{ i + 1 }}</div>
+          <div class="col-8">
+            {{ option.item_name }}
+          </div>
+          <div class="col">
+            {{ option.quantity }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

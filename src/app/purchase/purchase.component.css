@@ -1,0 +1,108 @@
+.sideButtons {
+  margin-top: 30px;
+  margin-left: 16px;
+  width: 47mm;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.mat-icon {
+  /* height: 20px !important; */
+  /* width: 9px !important; */
+  font-size: 15px !important;
+}
+.matButton {
+  height: 26px !important;
+  width: 30px !important;
+}
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+img {
+  margin: 0;
+} /* margin reset*/
+h1 {
+  font-size: 18pt;
+  font-weight: 500;
+  margin-bottom: 0.5cm;
+}
+h2 {
+  font-size: 16pt;
+  font-weight: 500;
+}
+p {
+  font-size: 12pt;
+}
+
+.items-group {
+  border-style: solid;
+  border-color: black;
+  border-width: 1pt 1pt 1pt 1pt;
+  border-radius: 5pt;
+  padding: 3pt 3pt 3pt 3pt;
+  margin: 9pt 0 9pt 0;
+}
+
+.items-group-sub {
+  border-style: solid;
+  border-color: black;
+  border-width: 0 1pt 1pt 1pt;
+  border-radius: 0 0 5pt 5pt;
+  padding: 12pt 3pt 3pt 3pt;
+  margin: -14pt 0 9pt 0;
+}
+
+.items-group-sub :not(.label),
+.items-group :not(.label) {
+  font-size: 10pt;
+}
+
+.logotipo {
+  width: 6cm;
+  height: 4cm;
+  margin: -0.5cm;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.disclaimer,
+.address p {
+  font-size: 10pt;
+}
+
+.signature-field {
+  padding-bottom: 24pt;
+  border-bottom: solid black 1pt;
+}
+
+.constantForm {
+  margin-top: 7px;
+  background-color: #ebf7f5;
+  padding: 3mm;
+  border-radius: 5px;
+}
+
+.mainTable {
+  width: 29cm;
+  margin-top: 10px;
+  background-color: #f8ffeb;
+}
+.secondCol {
+  background-color: #ebf7f5;
+  margin-left: 5px;
+  margin-top: 6px;
+  border-radius: 5px;
+}

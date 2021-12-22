@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mainForm {
+  /* border-style: solid; */
+  padding: 10mm;
+  /* border-width: 3px; */
+  /* border-radius: 4px; */
+  /* border-color: grey; */
+}
+.firstDiv {
+  padding: 7mm;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* input[type="number"] {
+  -moz-appearance: textfield;
+} */
+.heading {
+  margin-top: 20px;
+  font-size: large;
+}
+app-print-page {
+  display: none;
+}
+app-print-kot {
+  display: none;
+}
+
+
+@media print {
+  app-print-page {
+    display: block;
+  }
+  app-print-kot {
+    display: block;
+  }
+  .main {
+    display: none;
+  }
+}

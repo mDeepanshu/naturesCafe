@@ -1,0 +1,40 @@
+.headItems {
+  margin-left: 20mm;
+  font-size: large;
+  margin-top: 3px;
+}
+.headItemstwo {
+  margin-left: 6mm;
+  font-size: medium;
+}
+.headItemsThree {
+  margin-left: 16mm;
+  font-size: medium;
+}
+.headItemsFour {
+  margin-left: 12mm;
+  font-size: medium;
+}
+.bodydiv {
+  margin-left: 4px;
+}
+.itemname {
+  /* position: absolute; */
+  left: 0px;
+  align-content: flex-start;
+  width: 3cm;
+}
+.qty {
+  margin-left: 13mm;
+}
+.rate {
+  margin-left: 13mm;
+}
+.containdiv {
+  line-height: 80%;
+}
+.table {
+  line-height: 90%;
+  border-collapse: separate;
+  border-spacing: 5px 5px;
+}

@@ -1,0 +1,48 @@
+<div class="heading">CHECK BILL`S</div>
+<hr />
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="picker">
+          <input
+            matStartDate
+            formControlName="start"
+            placeholder="Start date"
+          />
+          <input matEndDate formControlName="end" placeholder="End date" />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="fetchBills()">
+        Fetch Bills
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ITEM NAME</th>
+          <th scope="col">QUANTITY</th>
+          <th scope="col">AMOUNT</th>
+          <!-- <th scope="col">Handle</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let option of array; let index = index">
+          <th scope="row">{{ index + 1 }}</th>
+          <td>{{ option.item_name }}</td>
+          <td>{{ option.quantity }}</td>
+          <td>{{ option.amount }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
