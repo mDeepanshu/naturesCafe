@@ -1,1 +1,34 @@
-<p>main-home works!</p>
+<div class="heading">
+  INDOOR <mat-icon (click)="addTab('indoor')">add_circle_outline</mat-icon>
+</div>
+<hr />
+<div class="row">
+  <ul>
+    <li *ngFor="let option of arrays.indoor; let index = index">
+      <app-table-card></app-table-card>
+    </li>
+  </ul>
+</div>
+<br />
+<div class="heading">
+  OUTDOOR <mat-icon (click)="addTab('outdoor')">add_circle_outline</mat-icon>
+</div>
+<hr />
+<div class="row">
+  <ul>
+    <li *ngFor="let option of arrays.outdoor; let index = index">
+      <app-table-card></app-table-card>
+    </li>
+  </ul>
+</div>
+<div class="heading">
+  CUSTOM <mat-icon (click)="addTab('custom')">add_circle_outline</mat-icon>
+</div>
+<hr />
+<div class="row">
+  <ul>
+    <li *ngFor="let option of arrays.custom; let index = index">
+      <app-table-card></app-table-card>
+    </li>
+  </ul>
+</div>

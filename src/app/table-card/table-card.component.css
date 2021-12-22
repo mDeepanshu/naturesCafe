@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  left: 0;
+  width: 2.5cm;
+  height: 2.5cm;
+  background-color: rgba(23, 228, 235, 0.904);
+  border-radius: 2mm;
+}
+.div {
+  margin-left: 10px;
+}
+.rowone {
+  margin-left: 4px;
+  margin-top: 3px;
+  padding: 3px;
+  line-height: 22px;
+}
+.rowtwo {
+  margin-top: 7px;
+}

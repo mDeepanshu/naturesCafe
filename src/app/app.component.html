@@ -1,6 +1,6 @@
 <!-- <app-login></app-login> -->
 <!--  -->
-<div class="container-fluid main">
+<div class="container-fluid main" *ngIf="!login">
   <div class="row justify-content-between">
     <div class="col-1">
       <app-side-bar></app-side-bar>
@@ -12,3 +12,4 @@
 </div>
 <app-print-page *ngIf="toPrintBill"></app-print-page>
 <app-print-kot *ngIf="toPrintKot"></app-print-kot>
+<app-login-page *ngIf="login"></app-login-page>

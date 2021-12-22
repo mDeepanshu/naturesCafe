@@ -29,12 +29,14 @@ import { HomeDeliveryComponent } from './home-delivery/home-delivery.component';
 import { PrintPageComponent } from './print-page/print-page.component';
 import { PrintKotComponent } from './print-kot/print-kot.component';
 import { MainHomeComponent } from './main-home/main-home.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { TableCardComponent } from './table-card/table-card.component';
 
 const routes: Routes = [
   { path: '', component: PurchaseComponent },
   { path: 'additem', component: AddItemComponent },
   { path: 'checkBills', component: CheckBillsComponent },
-  { path: 'homeDelivery', component: HomeDeliveryComponent },
+  { path: 'home', component: MainHomeComponent },
 ];
 
 @NgModule({
@@ -50,6 +52,8 @@ const routes: Routes = [
     PrintPageComponent,
     PrintKotComponent,
     MainHomeComponent,
+    LoginPageComponent,
+    TableCardComponent,
   ],
   imports: [
     BrowserModule,

@@ -135,7 +135,6 @@ export class PurchaseComponent implements OnInit {
     this.arraySqr[this.selected.value].splice(i, 1);
   }
   addTab(type) {
-    this.tableLabel.nativeElement.focus();
     let indx;
     let dependent_value;
     if (type == '') {

@@ -20,13 +20,13 @@ export class SideBarComponent implements OnInit {
   onElement = 0;
   @ViewChild('aForm') aForm: ElementRef | undefined;
   constructor(private _snackBar: MatSnackBar, private router: Router) {}
-  routesArray = ['', 'additem', 'checkBills'];
-  capital = ['PURCHASE', 'ADD ITEM', 'CHECK BILL`S'];
+  routesArray = ['', 'additem', 'checkBills', 'home'];
+  capital = ['PURCHASE', 'ADD ITEM', 'CHECK BILL`S', 'HOME'];
   ngOnInit() {
     const d = new Date();
     d.setMonth(7);
     d.setDate(30);
-    d.setFullYear(2022)
+    d.setFullYear(2022);
     if (d.getTime() - this.date.getTime() <= 0) {
       this.expired = true;
       this._snackBar.open('Date Expired', 'Close');

@@ -16,6 +16,7 @@ export class MainServiceService {
   toPrintKot = new Subject<boolean>();
   toPrintBill = new Subject<boolean>();
   kotPrintArray = new Subject<any>();
+  login = new Subject<any>();
   // 'https://cafe-hoshangabad.herokuapp.com'
   // 'http://localhost:3000'
   autoCompleteItemName(keyword: any) {
@@ -35,7 +36,23 @@ export class MainServiceService {
         });
     });
   }
-
+  makeLogin() {
+    return new Promise((response, reject) => {
+      this.http
+        .get(`${this.url}/bill/login`)
+        .subscribe((responseData: ResponseType) => {
+          let isError = this.checkForErr(
+            responseData.status,
+            responseData.message
+          );
+          if (isError) {
+            reject('http request failed' + responseData.message);
+          } else {
+            response(responseData.message);
+          }
+        });
+    });
+  }
   addNewItem(itemName: String, rate: Number) {
     return new Promise((response, reject) => {
       this.http
