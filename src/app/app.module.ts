@@ -15,6 +15,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
@@ -33,10 +35,10 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { TableCardComponent } from './table-card/table-card.component';
 
 const routes: Routes = [
-  { path: '', component: PurchaseComponent },
+  { path: 'purchase', component: PurchaseComponent },
   { path: 'additem', component: AddItemComponent },
   { path: 'checkBills', component: CheckBillsComponent },
-  { path: 'home', component: MainHomeComponent },
+  { path: '', component: MainHomeComponent },
 ];
 
 @NgModule({
@@ -68,6 +70,7 @@ const routes: Routes = [
     MatNativeDateModule,
     MatTabsModule,
     ReactiveFormsModule,
+    MatSelectModule,
     FormsModule,
     MatIconModule,
     MatDialogModule,

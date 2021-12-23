@@ -1,4 +1,9 @@
 li {
   float: left;
   padding: 7px;
+  line-height: 130%;
+}
+
+.row {
+  line-height: 100%;
 }

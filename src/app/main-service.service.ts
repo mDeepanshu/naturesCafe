@@ -17,6 +17,13 @@ export class MainServiceService {
   toPrintBill = new Subject<boolean>();
   kotPrintArray = new Subject<any>();
   login = new Subject<any>();
+  // amount = [0, 0, 0];
+  amount = {
+    indoor: [0, 0, 0],
+    outdoor: [0, 0, 0],
+    pickup: [0, 0, 0],
+    custom: [0, 0, 0],
+  };
   // 'https://cafe-hoshangabad.herokuapp.com'
   // 'http://localhost:3000'
   autoCompleteItemName(keyword: any) {
@@ -95,7 +102,6 @@ export class MainServiceService {
       return false;
     }
   }
-  // ?from_date=${from}&to_date=${till}
   getBillbyDate(from, till) {
     return new Promise((response, reject) => {
       this.http
