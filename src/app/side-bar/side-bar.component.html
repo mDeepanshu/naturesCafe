@@ -1,5 +1,5 @@
 <div class="sidebar-container">
-  <div class="sidebar-logo">FOOD COSTA</div>
+  <div class="sidebar-logo">NATURE`S CAFE</div>
   <ul class="sidebar-navigation">
     <li *ngFor="let hero of routesArray; index as i">
       <a
@@ -7,7 +7,7 @@
         [style.background-color]="onLink == i ? 'red' : ''"
         (click)="linkChange(i)"
       >
-        <i aria-hidden="true"></i>{{ capital[i] }}</a
+        <b> {{ capital[i] }}</b></a
       >
     </li>
   </ul>

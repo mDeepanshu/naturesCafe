@@ -1,7 +1,7 @@
 .sideButtons {
-  margin-top: 30px;
+  margin-top: 25px;
   margin-left: 16px;
-  width: 47mm;
+  width: 80%;
 }
 
 .example-form {
@@ -96,7 +96,7 @@ p {
 }
 
 .mainTable {
-  width: 29cm;
+  width: 80%;
   margin-top: 10px;
   background-color: #f8ffeb;
 }

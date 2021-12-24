@@ -1,10 +1,13 @@
-<div class="div topDiv">
+<div class="container">
   <div class="row">
     <div class="heading">
-      INDOOR <mat-icon (click)="addTab('indoor')">add_circle_outline</mat-icon>
+      INDOOR
+      <mat-icon (click)="addTab('indoor')">add_circle_outline</mat-icon>
     </div>
     <ul>
-      <li *ngFor="let option of arrays.indoor; let index = index">
+      <li
+        *ngFor="let option of mainService.parentTab.indoor; let index = index"
+      >
         <app-table-card
           [number]="option"
           [space]="'indoor'"
@@ -20,7 +23,9 @@
       <mat-icon (click)="addTab('outdoor')">add_circle_outline</mat-icon>
     </div>
     <ul>
-      <li *ngFor="let option of arrays.outdoor; let index = index">
+      <li
+        *ngFor="let option of mainService.parentTab.outdoor; let index = index"
+      >
         <app-table-card
           [number]="option"
           [space]="'outdoor'"
@@ -32,10 +37,13 @@
   <hr />
   <div class="row">
     <div class="heading">
-      CUSTOM <mat-icon (click)="addTab('custom')">add_circle_outline</mat-icon>
+      CUSTOM
+      <mat-icon (click)="addTab('custom')">add_circle_outline</mat-icon>
     </div>
     <ul>
-      <li *ngFor="let option of arrays.custom; let index = index">
+      <li
+        *ngFor="let option of mainService.parentTab.custom; let index = index"
+      >
         <app-table-card
           [number]="option"
           [space]="'custom'"
@@ -47,10 +55,13 @@
   <hr />
   <div class="row">
     <div class="heading">
-      PICK UP <mat-icon (click)="addTab('pickup')">add_circle_outline</mat-icon>
+      PICK UP
+      <mat-icon (click)="addTab('pickup')">add_circle_outline</mat-icon>
     </div>
     <ul>
-      <li *ngFor="let option of arrays.pickup; let index = index">
+      <li
+        *ngFor="let option of mainService.parentTab.pickup; let index = index"
+      >
         <app-table-card
           [number]="option"
           [space]="'pickup'"

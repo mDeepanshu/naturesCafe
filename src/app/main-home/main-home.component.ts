@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MainServiceService } from '../main-service.service';
 
 @Component({
   selector: 'app-main-home',
@@ -6,44 +7,30 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./main-home.component.css'],
 })
 export class MainHomeComponent implements OnInit, OnDestroy {
-  constructor() {}
+  constructor(public mainService: MainServiceService) {}
 
-  arrays = {
-    indoor: [1, 2, 3],
-    outdoor: [1, 2, 3],
-    pickup: [1, 2, 3],
-    custom: [1, 2, 3],
-  };
-
-  ngOnInit() {
-    let arrays_from_local = JSON.parse(localStorage.getItem('arrays'));
-    if (arrays_from_local) {
-      this.arrays = JSON.parse(localStorage.getItem('arrays'));
-    }
-  }
+  ngOnInit() {}
   addTab(type) {
     this.rearrange_onAdd(type);
   }
   removeTab(type, pos) {
-    this.arrays[type].forEach((element) => {
+    this.mainService.parentTab[type].forEach((element) => {
       if (element == pos) {
-        const index = this.arrays[type].indexOf(pos);
-        this.arrays[type].splice(index, 1);
+        const index = this.mainService.parentTab[type].indexOf(pos);
+        this.mainService.parentTab[type].splice(index, 1);
       }
     });
   }
   rearrange_onAdd(type) {
-    let _len = this.arrays[type].length;
+    let _len = this.mainService.parentTab[type].length;
     for (let i = 0; i < _len; i++) {
-      if (this.arrays[type][i] != i + 1) {
-        this.arrays[type].splice(i, 0, i + 1);
+      if (this.mainService.parentTab[type][i] != i + 1) {
+        this.mainService.parentTab[type].splice(i, 0, i + 1);
         return i + 1;
       }
     }
-    this.arrays[type].splice(_len, 0, _len + 1);
+    this.mainService.parentTab[type].splice(_len, 0, _len + 1);
     return _len + 1;
   }
-  ngOnDestroy() {
-    localStorage.setItem('arrays', JSON.stringify(this.arrays));
-  }
+  ngOnDestroy() {}
 }

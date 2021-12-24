@@ -19,4 +19,8 @@ export class TableCardComponent implements OnInit {
   close() {
     this.clossing.emit(this.number);
   }
+  print() {
+    this.mainService.save_and_print(this.number - 1, this.space);
+  }
+  view() {}
 }

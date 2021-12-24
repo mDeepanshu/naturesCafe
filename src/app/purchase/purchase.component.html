@@ -2,30 +2,33 @@
 <hr />
 <div class="container">
   <div class="row">
-    <div class="col-md">
+    <div class="col-sm">
       <div class="row justify-content-md-left constantForm">
-        <div class="col col-lg-2">
+        <div class="col col-sm">
           <button
             class="btn btn-primary"
-            (click)="addTab('')"
+            (click)="addTab()"
             style="margin-top: 7px"
           >
             ADD TABLE
           </button>
         </div>
-        <div class="col col-lg-2">
+        <div class="col col-sm">
           <button
             class="btn btn-primary"
-            (click)="addTab('PICK UP')"
+            (click)="addTab()"
             style="margin-top: 7px"
           >
             NEW PICK UP
           </button>
         </div>
-        <div class="col col-lg-3">
+        <div class="col col-sm">
           <mat-form-field appearance="fill">
             <mat-label>SPACE</mat-label>
-            <mat-select (selectionChange)="spaceChange($event.value)">
+            <mat-select
+              (selectionChange)="spaceChange($event.value)"
+              [(value)]="onSpace"
+            >
               <mat-option value="indoor"> INDOOR </mat-option>
               <mat-option value="outdoor"> OUTDOOR </mat-option>
               <mat-option value="custom"> CUSTOM </mat-option>
@@ -33,7 +36,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col col-lg-2" [hidden]="onSpace != 'custom'">
+        <div class="col col-sm" [hidden]="onSpace != 'custom'">
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Custom`s Label</mat-label>
             <input matInput />
@@ -48,76 +51,70 @@
           #aForm
         >
           <div class="row justify-content-between">
-            <div class="div constantForm">
-              <div class="row">
-                <div class="col">
-                  <div class="input-group input-group-sm mb-3">
-                    <div class="input-group mb-3">
-                      <mat-form-field style="width: 100%">
-                        <input
-                          type="text"
-                          style="height: 33px"
-                          id="item_name"
-                          placeholder="ITEM NAME"
-                          #itemname
-                          (input)="itemName(itemname.value)"
-                          formControlName="item_name"
-                          matInput
-                          [matAutocomplete]="auto"
-                        />
-                        <mat-autocomplete #auto="matAutocomplete">
-                          <mat-option
-                            *ngFor="let option of itemOptions"
-                            [value]="option.itemName"
-                            (onSelectionChange)="
-                              onPartySelect(option.rate, $event)
-                            "
-                          >
-                            {{ option.itemName }}
-                          </mat-option>
-                        </mat-autocomplete>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-floating mb-3">
-                    <input
-                      class="form-control"
-                      type="number"
-                      formControlName="rate"
-                      id="Rate"
-                    />
-                    <label for="floatingInput">Rate</label>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-floating mb-3">
-                    <input
-                      class="form-control"
-                      formControlName="quantity"
-                      type="number"
-                      id="Quantity"
-                    />
-                    <label for="floatingInput" type="number">Quantity</label>
+            <div class="row">
+              <div class="col-sm">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group mb-3">
+                    <mat-form-field style="width: 100%">
+                      <input
+                        type="text"
+                        style="height: 33px"
+                        id="item_name"
+                        placeholder="ITEM NAME"
+                        #itemname
+                        (input)="itemName(itemname.value)"
+                        formControlName="item_name"
+                        matInput
+                        [matAutocomplete]="auto"
+                      />
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option
+                          *ngFor="let option of itemOptions"
+                          [value]="option.itemName"
+                          (onSelectionChange)="
+                            onPartySelect(option.rate, $event)
+                          "
+                        >
+                          {{ option.itemName }}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
                   </div>
                 </div>
               </div>
-              <div class="row" style="width: 6cm; margin-left: 10cm">
-                <button
-                  type="button"
-                  (click)="addNew()"
-                  class="btn btn-warning"
-                >
-                  Add
-                </button>
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input
+                    class="form-control"
+                    type="number"
+                    formControlName="rate"
+                    id="Rate"
+                  />
+                  <label for="floatingInput">Rate</label>
+                </div>
               </div>
+              <div class="col-sm">
+                <div class="form-floating mb-3">
+                  <input
+                    class="form-control"
+                    formControlName="quantity"
+                    type="number"
+                    id="Quantity"
+                  />
+                  <label for="floatingInput" type="number">Quantity</label>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="width: 6cm; margin-left: 10cm">
+              <button type="button" (click)="addNew()" class="btn btn-warning">
+                Add
+              </button>
             </div>
           </div>
         </form>
       </div>
     </div>
-    <div class="col-md-2 secondCol">
+    <div class="col-sm-2 secondCol">
       <div class="row" *ngIf="false">
         <button
           type="button"
@@ -181,7 +178,7 @@
         animationDuration="0ms"
       >
         <mat-tab
-          *ngFor="let tab of parentTab[onSpace]; let index = index"
+          *ngFor="let tab of mainService.parentTab[onSpace]; let index = index"
           [label]="tab"
         >
           <table #table class="table table-striped mainTable">
@@ -199,7 +196,7 @@
             <tbody>
               <tr
                 *ngFor="
-                  let item of itemList_inSpace[onSpace].arraySqr[
+                  let item of mainService.itemList_inSpace[onSpace].arraySqr[
                     selected.value
                   ];
                   index as i
@@ -232,7 +229,9 @@
                     value=""
                     id="flexCheckDefault"
                     [checked]="
-                      itemList_inSpace[onSpace].kotPrint[selected.value][i]
+                      mainService.itemList_inSpace[onSpace].kotPrint[
+                        selected.value
+                      ][i]
                     "
                     (change)="checkChange(i)"
                   />

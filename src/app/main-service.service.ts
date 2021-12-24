@@ -5,6 +5,8 @@ import { ErrMsgModuleComponent } from './err-msg-module/err-msg-module.component
 import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Purchase } from './models/purchase.model';
+import { ConfirmComponentComponent } from './confirm-component/confirm-component.component';
 
 @Injectable({
   providedIn: 'root',
@@ -17,12 +19,40 @@ export class MainServiceService {
   toPrintBill = new Subject<boolean>();
   kotPrintArray = new Subject<any>();
   login = new Subject<any>();
+  public purchaseDetail: Purchase;
+
   // amount = [0, 0, 0];
   amount = {
     indoor: [0, 0, 0],
     outdoor: [0, 0, 0],
     pickup: [0, 0, 0],
     custom: [0, 0, 0],
+  };
+  //
+  parentTab = {
+    indoor: [1, 2, 3],
+    outdoor: [1, 2, 3],
+    pickup: [1, 2, 3],
+    custom: [1, 2, 3],
+  };
+  //
+  itemList_inSpace = {
+    indoor: {
+      kotPrint: [[], [], []],
+      arraySqr: [[], [], []],
+    },
+    outdoor: {
+      kotPrint: [[], [], []],
+      arraySqr: [[], [], []],
+    },
+    pickup: {
+      kotPrint: [[], [], []],
+      arraySqr: [[], [], []],
+    },
+    custom: {
+      kotPrint: [[], [], []],
+      arraySqr: [[], [], []],
+    },
   };
   // 'https://cafe-hoshangabad.herokuapp.com'
   // 'http://localhost:3000'
@@ -135,6 +165,36 @@ export class MainServiceService {
             console.log(responseData.message);
           }
         });
+    });
+  }
+  save_and_print(onTab, onSpace) {
+    console.log(this.amount[onSpace][onTab]);
+    this.purchaseDetail = {
+      billNo: `${Date.now().toString(36)}`,
+      date: new Date(),
+      items: this.itemList_inSpace[onSpace].arraySqr[onTab],
+      amount: this.amount[onSpace][onTab],
+      discount: this.amount[onSpace][onTab],
+      discountAmount: 0,
+      discountType: '',
+    };
+    const dialogRef = this.dialog.open(ConfirmComponentComponent, {
+      width: '550px',
+      height: '300px',
+      data: this.purchaseDetail,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.purchaseDetail.discount = result.discount;
+        this.purchaseDetail.discountType = result.discountType;
+        this.purchaseDetail.discountAmount = result.discountAmount;
+        this.printArray.next(this.purchaseDetail);
+        this.toPrintKot.next(false);
+        this.addPurchase(this.purchaseDetail).then((data) => {
+          window.print();
+          this.toPrintKot.next(true);
+        });
+      }
     });
   }
 }

@@ -6,7 +6,6 @@ import {
   HostListener,
 } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -19,7 +18,7 @@ export class SideBarComponent implements OnInit {
   onLink = 0;
   onElement = 0;
   @ViewChild('aForm') aForm: ElementRef | undefined;
-  constructor(private _snackBar: MatSnackBar, private router: Router) {}
+  constructor(private _snackBar: MatSnackBar) {}
   routesArray = ['', 'purchase', 'additem', 'checkBills'];
   capital = ['HOME', 'PURCHASE', 'ADD ITEM', 'CHECK BILL`S'];
   ngOnInit() {
