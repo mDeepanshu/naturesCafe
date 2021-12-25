@@ -1,11 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  HostListener,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MainServiceService } from '../main-service.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -15,10 +10,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SideBarComponent implements OnInit {
   date = new Date();
   expired = false;
-  onLink = 0;
   onElement = 0;
   @ViewChild('aForm') aForm: ElementRef | undefined;
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(
+    private _snackBar: MatSnackBar,
+    public mainService: MainServiceService
+  ) {}
   routesArray = ['', 'purchase', 'additem', 'checkBills'];
   capital = ['HOME', 'PURCHASE', 'ADD ITEM', 'CHECK BILL`S'];
   ngOnInit() {
@@ -35,6 +32,6 @@ export class SideBarComponent implements OnInit {
   }
   //
   linkChange(r: any) {
-    this.onLink = r;
+    this.mainService.onLink = r;
   }
 }

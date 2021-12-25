@@ -11,8 +11,8 @@ export class LoginPageComponent implements OnInit {
   invalidPassword = false;
   ngOnInit(): void {}
   login(pass) {
-    this.mainService.makeLogin().then((res) => {
-      if (res) {
+    this.mainService.makeLogin(pass).then((res) => {
+      if (res == 'Authorised') {
         this.mainService.login.next(false);
       } else {
         this.invalidPassword = true;

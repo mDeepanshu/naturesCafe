@@ -13,27 +13,28 @@ import { ConfirmComponentComponent } from './confirm-component/confirm-component
 })
 export class MainServiceService {
   constructor(private http: HttpClient, public dialog: MatDialog) {}
-  public url: string = 'http://localhost:3000';
+  public url: string = 'https://nature-cafe.herokuapp.com';
   printArray = new Subject<any>();
   toPrintKot = new Subject<boolean>();
   toPrintBill = new Subject<boolean>();
   kotPrintArray = new Subject<any>();
   login = new Subject<any>();
   public purchaseDetail: Purchase;
-
-  // amount = [0, 0, 0];
+  selected = 0;
+  onLink = 0;
+  onSpace = 'indoor';
   amount = {
     indoor: [0, 0, 0],
     outdoor: [0, 0, 0],
     pickup: [0, 0, 0],
-    custom: [0, 0, 0],
+    custom: [0],
   };
   //
   parentTab = {
     indoor: [1, 2, 3],
     outdoor: [1, 2, 3],
     pickup: [1, 2, 3],
-    custom: [1, 2, 3],
+    custom: ['First'],
   };
   //
   itemList_inSpace = {
@@ -73,10 +74,10 @@ export class MainServiceService {
         });
     });
   }
-  makeLogin() {
+  makeLogin(pin) {
     return new Promise((response, reject) => {
       this.http
-        .get(`${this.url}/bill/login`)
+        .get(`${this.url}/authorize?pin=${pin}`)
         .subscribe((responseData: ResponseType) => {
           let isError = this.checkForErr(
             responseData.status,

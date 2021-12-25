@@ -27,7 +27,7 @@
             <mat-label>SPACE</mat-label>
             <mat-select
               (selectionChange)="spaceChange($event.value)"
-              [(value)]="onSpace"
+              [(value)]="mainService.onSpace"
             >
               <mat-option value="indoor"> INDOOR </mat-option>
               <mat-option value="outdoor"> OUTDOOR </mat-option>
@@ -36,10 +36,10 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col col-sm" [hidden]="onSpace != 'custom'">
+        <div class="col col-sm" [hidden]="mainService.onSpace != 'custom'">
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Custom`s Label</mat-label>
-            <input matInput />
+            <input matInput (input)="custom_label_change(label.value)" #label />
           </mat-form-field>
         </div>
       </div>
@@ -173,12 +173,15 @@
   <div class="row">
     <div class="col-md">
       <mat-tab-group
-        [selectedIndex]="selected.value"
-        (selectedIndexChange)="selected.setValue($event)"
+        [selectedIndex]="mainService.selected"
+        (selectedIndexChange)="mainService.selected = $event"
         animationDuration="0ms"
       >
         <mat-tab
-          *ngFor="let tab of mainService.parentTab[onSpace]; let index = index"
+          *ngFor="
+            let tab of mainService.parentTab[mainService.onSpace];
+            let index = index
+          "
           [label]="tab"
         >
           <table #table class="table table-striped mainTable">
@@ -196,9 +199,8 @@
             <tbody>
               <tr
                 *ngFor="
-                  let item of mainService.itemList_inSpace[onSpace].arraySqr[
-                    selected.value
-                  ];
+                  let item of mainService.itemList_inSpace[mainService.onSpace]
+                    .arraySqr[mainService.selected];
                   index as i
                 "
               >
@@ -229,9 +231,8 @@
                     value=""
                     id="flexCheckDefault"
                     [checked]="
-                      mainService.itemList_inSpace[onSpace].kotPrint[
-                        selected.value
-                      ][i]
+                      mainService.itemList_inSpace[mainService.onSpace]
+                        .kotPrint[mainService.selected][i]
                     "
                     (change)="checkChange(i)"
                   />

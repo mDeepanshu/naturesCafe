@@ -36,16 +36,31 @@
   </div>
   <hr />
   <div class="row">
-    <div class="heading">
-      CUSTOM
-      <mat-icon (click)="addTab('custom')">add_circle_outline</mat-icon>
+    <div class="row">
+      <div class="col">
+        <div class="heading">
+          CUSTOM
+          <mat-icon (click)="addTab('custom')">add_circle_outline</mat-icon>
+        </div>
+      </div>
+      <div class="col">
+        <mat-form-field class="cus_label">
+          <mat-label>Custom Label</mat-label>
+          <input
+            type="text"
+            (input)="custom_label_change(label.value)"
+            #label
+            matInput
+          />
+        </mat-form-field>
+      </div>
     </div>
     <ul>
       <li
         *ngFor="let option of mainService.parentTab.custom; let index = index"
       >
         <app-table-card
-          [number]="option"
+          [number]="mainService.parentTab.custom[index]"
           [space]="'custom'"
           (clossing)="removeTab('custom', $event)"
         ></app-table-card>

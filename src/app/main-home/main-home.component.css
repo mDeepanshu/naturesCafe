@@ -7,3 +7,8 @@ li {
 .row {
   line-height: 100%;
 }
+.cus_label {
+  background-color: oldlace;
+  border-radius: 10px;
+  padding: 2px;
+}

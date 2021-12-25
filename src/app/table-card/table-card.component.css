@@ -3,14 +3,14 @@
   left: 0;
   width: 2.5cm;
   height: 2.5cm;
-  background-color: rgba(199, 227, 228, 0.904);
+  background-color: #eaeaea;
   border-radius: 2mm;
 }
 .div {
   margin-left: 10px;
 }
 .rowone {
-  margin-left: 4px;
+  margin-left: 0px;
 }
 .rowtwo {
   margin-top: 5px;

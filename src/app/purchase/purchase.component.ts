@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ViewChild,
-  ElementRef,
-  HostListener,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PurchaseTable } from '../models/purchaseTable.model';
 import { MainServiceService } from '../main-service.service';
@@ -18,7 +11,7 @@ import { PrintKotComponent } from '../print-kot/print-kot.component';
   templateUrl: './purchase.component.html',
   styleUrls: ['./purchase.component.css'],
 })
-export class PurchaseComponent implements OnInit, OnDestroy {
+export class PurchaseComponent implements OnInit {
   //
   constructor(
     public mainService: MainServiceService,
@@ -27,9 +20,6 @@ export class PurchaseComponent implements OnInit, OnDestroy {
   @ViewChild('tableLabel') tableLabel: ElementRef;
 
   purchaseForm: FormGroup;
-  selected = new FormControl(0);
-  onSpace = 'indoor';
-
   public timer: any;
   public timerTwo: any;
   itemOptions: any[] = [];
@@ -42,16 +32,20 @@ export class PurchaseComponent implements OnInit, OnDestroy {
     });
   }
   addNew() {
-    this.mainService.itemList_inSpace[this.onSpace].kotPrint[
-      this.selected.value
+    this.mainService.itemList_inSpace[this.mainService.onSpace].kotPrint[
+      this.mainService.selected
     ].push(true);
-    this.mainService.itemList_inSpace[this.onSpace].arraySqr[
-      this.selected.value
+    this.mainService.itemList_inSpace[this.mainService.onSpace].arraySqr[
+      this.mainService.selected
     ].push(this.purchaseForm.value);
     let total =
-      this.mainService.amount[this.onSpace][this.selected.value] +
+      this.mainService.amount[this.mainService.onSpace][
+        this.mainService.selected
+      ] +
       this.purchaseForm.value.rate * this.purchaseForm.value.quantity;
-    this.mainService.amount[this.onSpace][this.selected.value] = total;
+    this.mainService.amount[this.mainService.onSpace][
+      this.mainService.selected
+    ] = total;
     // this.purchaseForm.reset();
     this.purchaseForm.patchValue({
       item_name: null,
@@ -60,22 +54,25 @@ export class PurchaseComponent implements OnInit, OnDestroy {
   }
   spaceChange(space) {
     console.log(space);
-    this.onSpace = space;
+    this.mainService.onSpace = space;
   }
   onSubmit() {
-    this.mainService.save_and_print(this.selected.value, this.onSpace);
+    this.mainService.save_and_print(
+      this.mainService.selected,
+      this.mainService.onSpace
+    );
   }
   checkChange(i) {
-    this.mainService.itemList_inSpace[this.onSpace].kotPrint[
-      this.selected.value
+    this.mainService.itemList_inSpace[this.mainService.onSpace].kotPrint[
+      this.mainService.selected
     ][i] =
-      !this.mainService.itemList_inSpace[this.onSpace].kotPrint[
-        this.selected.value
+      !this.mainService.itemList_inSpace[this.mainService.onSpace].kotPrint[
+        this.mainService.selected
       ][i];
   }
   resetForm() {
-    this.mainService.itemList_inSpace[this.onSpace].arraySqr[
-      this.selected.value
+    this.mainService.itemList_inSpace[this.mainService.onSpace].arraySqr[
+      this.mainService.selected
     ] = [];
     this.purchaseForm.patchValue({
       item_name: null,
@@ -99,82 +96,97 @@ export class PurchaseComponent implements OnInit, OnDestroy {
     }, 500);
   }
   removeItem(i) {
-    this.mainService.amount[this.onSpace][this.selected.value] =
-      this.mainService.amount[this.onSpace][this.selected.value] -
-      this.mainService.itemList_inSpace[this.onSpace].arraySqr[
-        this.selected.value
+    this.mainService.amount[this.mainService.onSpace][
+      this.mainService.selected
+    ] =
+      this.mainService.amount[this.mainService.onSpace][
+        this.mainService.selected
+      ] -
+      this.mainService.itemList_inSpace[this.mainService.onSpace].arraySqr[
+        this.mainService.selected
       ][i].rate *
-        this.mainService.itemList_inSpace[this.onSpace].arraySqr[
-          this.selected.value
+        this.mainService.itemList_inSpace[this.mainService.onSpace].arraySqr[
+          this.mainService.selected
         ][i].quantity;
-    delete this.mainService.itemList_inSpace[this.onSpace].arraySqr[
-      this.selected.value
+    delete this.mainService.itemList_inSpace[this.mainService.onSpace].arraySqr[
+      this.mainService.selected
     ][i];
-    this.mainService.itemList_inSpace[this.onSpace].arraySqr[
-      this.selected.value
+    this.mainService.itemList_inSpace[this.mainService.onSpace].arraySqr[
+      this.mainService.selected
     ].splice(i, 1);
   }
   addTab() {
-    let indx = this.rearrange_onAdd(this.onSpace);
-    let dependent_value = indx - 1;
-    if (this.onSpace != 'custom') {
-      console.log(indx);
-      this.mainService.parentTab[this.onSpace].splice(dependent_value, 0, indx);
+    if (this.mainService.onSpace != 'custom') {
+      let indx = this.rearrange_onAdd(this.mainService.onSpace);
+      let dependent_value = indx - 1;
+      this.mainService.parentTab[this.mainService.onSpace].splice(
+        dependent_value,
+        0,
+        indx
+      );
+      this.pushto_nece_array(dependent_value);
+    } else {
+      this.mainService.parentTab.custom.push('new');
+      this.mainService.amount.custom.push(0);
     }
-    console.log(this.mainService.parentTab);
-    this.pushto_nece_array(dependent_value);
   }
   removeTab() {
-    if (this.mainService.parentTab[this.onSpace].length > 1) {
-      this.mainService.itemList_inSpace[this.onSpace].arraySqr.splice(
-        this.selected.value,
+    if (this.mainService.parentTab[this.mainService.onSpace].length > 1) {
+      this.mainService.itemList_inSpace[
+        this.mainService.onSpace
+      ].arraySqr.splice(this.mainService.selected, 1);
+      this.mainService.itemList_inSpace[
+        this.mainService.onSpace
+      ].kotPrint.splice(this.mainService.selected, 1);
+      this.mainService.parentTab[this.mainService.onSpace].splice(
+        this.mainService.selected,
         1
       );
-      this.mainService.itemList_inSpace[this.onSpace].kotPrint.splice(
-        this.selected.value,
+      this.mainService.amount[this.mainService.onSpace].splice(
+        this.mainService.selected,
         1
       );
-      this.mainService.parentTab[this.onSpace].splice(this.selected.value, 1);
-      this.mainService.amount[this.onSpace].splice(this.selected.value, 1);
     }
   }
-  changeTabName(name) {
-    this.mainService.parentTab[this.onSpace][this.selected.value] = name;
+  custom_label_change(label) {
+    this.mainService.parentTab.custom[
+      this.mainService.parentTab.custom.length - 1
+    ] = label;
   }
   printKot() {
     this.mainService.toPrintBill.next(false);
     let kotArray = [];
     let itemNumber =
-      this.mainService.itemList_inSpace[this.onSpace].arraySqr[
-        this.selected.value
+      this.mainService.itemList_inSpace[this.mainService.onSpace].arraySqr[
+        this.mainService.selected
       ].length;
     for (let i = 0; i < itemNumber; i++) {
       if (
-        this.mainService.itemList_inSpace[this.onSpace].kotPrint[
-          this.selected.value
+        this.mainService.itemList_inSpace[this.mainService.onSpace].kotPrint[
+          this.mainService.selected
         ][i] == true
       ) {
         kotArray.push(
-          this.mainService.itemList_inSpace[this.onSpace].arraySqr[
-            this.selected.value
+          this.mainService.itemList_inSpace[this.mainService.onSpace].arraySqr[
+            this.mainService.selected
           ][i]
         );
       }
     }
     this.mainService.kotPrintArray.next({
       mainArr: kotArray,
-      tableNumber: this.selected.value,
+      tableNumber: this.mainService.selected,
     });
     for (
       let i = 0;
       i <
-      this.mainService.itemList_inSpace[this.onSpace].kotPrint[
-        this.selected.value
+      this.mainService.itemList_inSpace[this.mainService.onSpace].kotPrint[
+        this.mainService.selected
       ].length;
       i++
     ) {
-      this.mainService.itemList_inSpace[this.onSpace].kotPrint[
-        this.selected.value
+      this.mainService.itemList_inSpace[this.mainService.onSpace].kotPrint[
+        this.mainService.selected
       ][i] = false;
     }
     setTimeout(() => {
@@ -200,18 +212,17 @@ export class PurchaseComponent implements OnInit, OnDestroy {
     return _len + 1;
   }
   pushto_nece_array(indx) {
-    this.selected.setValue(indx);
-    this.mainService.itemList_inSpace[this.onSpace].arraySqr.splice(
+    this.mainService.selected = indx;
+    this.mainService.itemList_inSpace[this.mainService.onSpace].arraySqr.splice(
       indx,
       0,
       []
     );
-    this.mainService.itemList_inSpace[this.onSpace].kotPrint.splice(
+    this.mainService.itemList_inSpace[this.mainService.onSpace].kotPrint.splice(
       indx,
       0,
       []
     );
-    this.mainService.amount[this.onSpace].splice(indx, 0, 0);
+    this.mainService.amount[this.mainService.onSpace].splice(indx, 0, 0);
   }
-  ngOnDestroy() {}
 }

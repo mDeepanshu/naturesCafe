@@ -22,15 +22,25 @@ export class MainHomeComponent implements OnInit, OnDestroy {
     });
   }
   rearrange_onAdd(type) {
-    let _len = this.mainService.parentTab[type].length;
-    for (let i = 0; i < _len; i++) {
-      if (this.mainService.parentTab[type][i] != i + 1) {
-        this.mainService.parentTab[type].splice(i, 0, i + 1);
-        return i + 1;
+    if (type != 'custom') {
+      let _len = this.mainService.parentTab[type].length;
+      for (let i = 0; i < _len; i++) {
+        if (this.mainService.parentTab[type][i] != i + 1) {
+          this.mainService.parentTab[type].splice(i, 0, i + 1);
+          return i + 1;
+        }
       }
+      this.mainService.parentTab[type].splice(_len, 0, _len + 1);
+      return _len + 1;
+    } else {
+      this.mainService.parentTab.custom.push('new');
+      this.mainService.amount.custom.push(0);
     }
-    this.mainService.parentTab[type].splice(_len, 0, _len + 1);
-    return _len + 1;
+  }
+  custom_label_change(label) {
+    this.mainService.parentTab.custom[
+      this.mainService.parentTab.custom.length - 1
+    ] = label;
   }
   ngOnDestroy() {}
 }

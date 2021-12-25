@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MainServiceService } from '../main-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-card',
@@ -7,14 +8,24 @@ import { MainServiceService } from '../main-service.service';
   styleUrls: ['./table-card.component.css'],
 })
 export class TableCardComponent implements OnInit {
-  constructor(private mainService: MainServiceService) {}
+  constructor(
+    private mainService: MainServiceService,
+    private router: Router
+  ) {}
   @Input() number;
   total;
   @Input() space;
   @Output() clossing = new EventEmitter<string>();
 
   ngOnInit() {
-    this.total = this.mainService.amount[this.space][this.number - 1];
+    if (this.space == 'custom') {
+      this.total =
+        this.mainService.amount[this.space][
+          this.mainService.amount[this.space].length - 1
+        ];
+    } else {
+      this.total = this.mainService.amount[this.space][this.number - 1];
+    }
   }
   close() {
     this.clossing.emit(this.number);
@@ -22,5 +33,10 @@ export class TableCardComponent implements OnInit {
   print() {
     this.mainService.save_and_print(this.number - 1, this.space);
   }
-  view() {}
+  view() {
+    this.router.navigate(['purchase']);
+    this.mainService.onSpace = this.space;
+    this.mainService.selected = this.number - 1;
+    this.mainService.onLink = 1;
+  }
 }
