@@ -1,29 +1,29 @@
-<div class="heading">PURCHASE</div>
-<hr />
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
+<div class="container-fluid">
+  <div class="row mx-md-n3">
+    <div class="heading">PURCHASE</div>
+    <hr />
+    <div class="col-xs-8 col-sm-12 col-md-9 p-3">
       <div class="row justify-content-md-left constantForm">
-        <div class="col col-sm">
+        <div class="col-xs-8 col-sm-8 col-md-4">
           <button
-            class="btn btn-primary"
+            class="btn btn-primary topBtn"
             (click)="addTab()"
             style="margin-top: 7px"
           >
             ADD TABLE
           </button>
         </div>
-        <div class="col col-sm">
+        <div class="col-xs-8 col-sm-8 col-md-4">
           <button
-            class="btn btn-primary"
+            class="btn btn-primary topBtn"
             (click)="addTab()"
             style="margin-top: 7px"
           >
             NEW PICK UP
           </button>
         </div>
-        <div class="col col-sm">
-          <mat-form-field appearance="fill">
+        <div class="col-xs-8 col-sm-8 col-md-4">
+          <mat-form-field appearance="fill" class="topBtn">
             <mat-label>SPACE</mat-label>
             <mat-select
               (selectionChange)="spaceChange($event.value)"
@@ -52,37 +52,33 @@
         >
           <div class="row justify-content-between">
             <div class="row">
-              <div class="col-sm">
-                <div class="input-group input-group-sm mb-3">
-                  <div class="input-group mb-3">
-                    <mat-form-field style="width: 100%">
-                      <input
-                        type="text"
-                        style="height: 33px"
-                        id="item_name"
-                        placeholder="ITEM NAME"
-                        #itemname
-                        (input)="itemName(itemname.value)"
-                        formControlName="item_name"
-                        matInput
-                        [matAutocomplete]="auto"
-                      />
-                      <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option
-                          *ngFor="let option of itemOptions"
-                          [value]="option.itemName"
-                          (onSelectionChange)="
-                            onPartySelect(option.rate, $event)
-                          "
-                        >
-                          {{ option.itemName }}
-                        </mat-option>
-                      </mat-autocomplete>
-                    </mat-form-field>
-                  </div>
+              <div class="col-xs-6 col-sm-4 col-md-4">
+                <div class="input-group mb-3">
+                  <mat-form-field style="width: 100%">
+                    <input
+                      type="text"
+                      style="height: 33px"
+                      id="item_name"
+                      placeholder="ITEM NAME"
+                      #itemname
+                      (input)="itemName(itemname.value)"
+                      formControlName="item_name"
+                      matInput
+                      [matAutocomplete]="auto"
+                    />
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option
+                        *ngFor="let option of itemOptions"
+                        [value]="option.itemName"
+                        (onSelectionChange)="onPartySelect(option.rate, $event)"
+                      >
+                        {{ option.itemName }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
                 </div>
               </div>
-              <div class="col-sm">
+              <div class="col-xs-6 col-sm-4 col-md-4">
                 <div class="form-floating mb-3">
                   <input
                     class="form-control"
@@ -93,7 +89,7 @@
                   <label for="floatingInput">Rate</label>
                 </div>
               </div>
-              <div class="col-sm">
+              <div class="col-xs-6 col-sm-4 col-md-4">
                 <div class="form-floating mb-3">
                   <input
                     class="form-control"
@@ -105,8 +101,12 @@
                 </div>
               </div>
             </div>
-            <div class="row" style="width: 6cm; margin-left: 10cm">
-              <button type="button" (click)="addNew()" class="btn btn-warning">
+            <div class="d-flex justify-content-center">
+              <button
+                type="button "
+                (click)="addNew()"
+                class="btn btn-warning addBtn"
+              >
                 Add
               </button>
             </div>
@@ -114,7 +114,7 @@
         </form>
       </div>
     </div>
-    <div class="col-sm-2 secondCol">
+    <div class="col-xs-8 col-sm-12 col-md-3 p-3 secondCol">
       <div class="row" *ngIf="false">
         <button
           type="button"

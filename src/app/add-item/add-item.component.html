@@ -1,60 +1,66 @@
-<div class="heading">ITEMS</div>
-<hr />
-<div class="firstDiv constantForm">
-  <form class="mainForm" [formGroup]="projectForm" (ngSubmit)="onSaveForm()">
-    <div class="row">
-      <div class="col">
-        <div class="input-group input-group-sm mb-3">
-          <div class="input-group mb-3">
-            <mat-form-field style="width: 100%">
-              <input
-                type="text"
-                placeholder="ITEM NAME"
-                style="height: 33px"
-                #itemname
-                (input)="itemName(itemname.value)"
-                formControlName="itemname"
-                matInput
-                [matAutocomplete]="auto"
-              />
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option
-                  *ngFor="let option of items"
-                  [value]="option.itemName"
-                >
-                  {{ option.itemName }}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
+<div class="container-fluid">
+  <div class="heading">ITEMS</div>
+  <hr />
+  <div class="constantForm">
+    <div class="row mx-md-n3">
+      <div class="col-xs-11 col-sm-11 col-md-7">
+        <form [formGroup]="projectForm" (ngSubmit)="onSaveForm()">
+          <div class="row">
+            <div class="col">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group mb-3">
+                  <mat-form-field style="width: 100%">
+                    <input
+                      type="text"
+                      placeholder="ITEM NAME"
+                      style="height: 33px"
+                      #itemname
+                      (input)="itemName(itemname.value)"
+                      formControlName="itemname"
+                      matInput
+                      [matAutocomplete]="auto"
+                    />
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option
+                        *ngFor="let option of items"
+                        [value]="option.itemName"
+                      >
+                        {{ option.itemName }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="Rate"
+                  type="number"
+                  formControlName="rate"
+                  placeholder="Rate"
+                />
+                <label for="floatingInput">Rate </label>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-floating mb-3">
-          <input
-            class="form-control"
-            id="Rate"
-            type="number"
-            formControlName="rate"
-            placeholder="Rate"
-          />
-          <label for="floatingInput">Rate </label>
-        </div>
+
+          <!-- buttons -->
+          <button type="button" (click)="resetForm()" class="btn btn-primary">
+            New
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="margin-left: 3cm"
+            [disabled]="!projectForm.valid"
+          >
+            Save
+          </button>
+        </form>
       </div>
     </div>
-
-    <!-- buttons -->
-    <button type="button" (click)="resetForm()" class="btn btn-primary">
-      New
-    </button>
-
-    <button
-      type="submit"
-      class="btn btn-primary"
-      style="margin-left: 3cm"
-      [disabled]="!projectForm.valid"
-    >
-      Save
-    </button>
-  </form>
+  </div>
 </div>

@@ -1,11 +1,13 @@
-<div class="div containdiv">
-  <p class="headItems"><b>FOODCOSTA</b></p>
-  <p class="headItemstwo">Ramji baba marg, In front of bus</p>
-  <p class="headItemsThree">stand, Hoshangabad</p>
-  <p class="headItemsFour">9111888460,8120225508</p>
-  <b><hr /></b>
-  Date:{{ date }}
-  <hr />
+<div class="d-flex justify-content-center">
+  <div class="row containdivTop">
+    <div class="col align-items-center">
+      <b>NATURE`S CAFE</b> <br />
+      In front of badi pahadiya Itarsi Rd, <br />
+      Hoshangabad <br />
+      9907228498 <br />
+      Date:{{ date }}<br />
+    </div>
+  </div>
 </div>
 <div class="div bodydiv">
   <div class="row">
@@ -13,9 +15,7 @@
     <div class="col">QTY</div>
     <div class="col">PRICE</div>
   </div>
-  ---------------------------------------------------------------------
-  <!-- ITEM-----------------QUANTITY------PRICE -->
-  <!-- <ul style="list-style-type: none;margin-left: 0px;"> -->
+  ------------------------------------------------------------------------
   <div *ngFor="let option of itemDetails; index as i">
     <div class="row">
       <div class="col-8">
@@ -31,33 +31,22 @@
   </div>
   <!-- </ul> -->
   <div class="div containdiv">
-    -------------------------------------------------------------------<br />
+    ------------------------------------------------------------------------<br />
     <div class="row">
       <div class="col">Total Qty:{{ total_qua }}</div>
       <div class="col">Sub Total:{{ sub_total }}</div>
     </div>
-    <br />-------------------------------------------------------------------
+    -----------------------------------------------------------------------
     <div class="row">
       <div class="col"><b>Grand Total</b>:{{ total }}</div>
       <div class="col">Discount:{{ discountAmount }}{{ discountType }}</div>
     </div>
-    <br />-------------------------------------------------------------------
-    <br />
+    -----------------------------------------------------------------------
+    <div class="row footerDiv">
+      <div class="col">
+        GST Number | 23BLYPR8258R1ZN <br />
+        FASSAI Numer| 21421110000838
+      </div>
+    </div>
   </div>
 </div>
-<!-- <table class="table table-borderless">
-    <thead>
-      <tr>
-        <th scope="col">ITEM</th>
-        <th scope="col">QTY</th>
-        <th scope="col">PRICE</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let option of itemDetails; index as i">
-        <td>{{ option.item_name }}</td>
-        <td>{{ option.quantity }}</td>
-        <td>{{ option.rate }}</td>
-      </tr>
-    </tbody>
-  </table> -->

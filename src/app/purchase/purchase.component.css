@@ -1,5 +1,5 @@
 .sideButtons {
-  margin-top: 25px;
+  margin-top: 15px;
   margin-left: 16px;
   width: 80%;
 }
@@ -102,7 +102,16 @@ p {
 }
 .secondCol {
   background-color: #ebf7f5;
-  margin-left: 5px;
-  margin-top: 6px;
+  /* margin-left: 5px; */
+  margin-top: 21px;
   border-radius: 5px;
+  font-size: 7em;
+  height: 254px;
+}
+.addBtn {
+  width: 16em;
+  /* margin-left: 20em; */
+}
+.topBtn {
+  width: 8em;
 }

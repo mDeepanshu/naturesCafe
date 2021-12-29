@@ -118,13 +118,9 @@ export class PurchaseComponent implements OnInit {
   addTab() {
     if (this.mainService.onSpace != 'custom') {
       let indx = this.rearrange_onAdd(this.mainService.onSpace);
-      let dependent_value = indx - 1;
-      this.mainService.parentTab[this.mainService.onSpace].splice(
-        dependent_value,
-        0,
-        indx
-      );
-      this.pushto_nece_array(dependent_value);
+      let space = this.mainService.onSpace;
+      this.mainService.parentTab[space].splice(indx - 1, 0, indx);
+      this.pushto_nece_array(indx - 1);
     } else {
       this.mainService.parentTab.custom.push('new');
       this.mainService.amount.custom.push(0);

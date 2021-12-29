@@ -18,23 +18,20 @@
 .bodydiv {
   margin-left: 4px;
 }
-.itemname {
-  /* position: absolute; */
-  left: 0px;
-  align-content: flex-start;
-  width: 3cm;
-}
-.qty {
-  margin-left: 13mm;
-}
-.rate {
-  margin-left: 13mm;
-}
 .containdiv {
-  line-height: 80%;
+  line-height: 100%;
+}
+.containdivTop {
+  line-height: 120%;
+  margin-top: 5px;
+  text-align: center;
 }
 .table {
   line-height: 90%;
   border-collapse: separate;
   border-spacing: 5px 5px;
+}
+.footerDiv {
+  text-align: center;
+  font-size: small;
 }

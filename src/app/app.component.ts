@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'naturesCafe';
   toPrintKot = true;
   toPrintBill = true;
-  login = true;
+  login = false;
   constructor(private mainService: MainServiceService) {}
   ngOnInit() {
     this.mainService.toPrintKot.subscribe((value) => {
