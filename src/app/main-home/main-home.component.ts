@@ -33,7 +33,7 @@ export class MainHomeComponent implements OnInit, OnDestroy {
       }
       this.mainService.parentTab[type].splice(_len, 0, _len + 1);
       this.mainService.amount[type].splice(_len + 1, 0, 0);
-      console.log(this.mainService.amount);
+      // console.log(this.mainService.amount);
       return _len + 1;
     } else {
       this.mainService.parentTab.custom.push('new');

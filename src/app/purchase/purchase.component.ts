@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PurchaseTable } from '../models/purchaseTable.model';
 import { MainServiceService } from '../main-service.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { PrintKotComponent } from '../print-kot/print-kot.component';
 
 @Component({
   selector: 'app-purchase',
@@ -30,6 +27,7 @@ export class PurchaseComponent implements OnInit {
       rate: new FormControl(null, Validators.required),
       quantity: new FormControl(1, Validators.required),
     });
+    console.log('this.mainService.selected', this.mainService.selected);
   }
   addNew() {
     this.mainService.itemList_inSpace[this.mainService.onSpace].kotPrint[
@@ -50,10 +48,10 @@ export class PurchaseComponent implements OnInit {
     this.purchaseForm.patchValue({
       item_name: null,
       rate: null,
+      quantity: 1,
     });
   }
   spaceChange(space) {
-    console.log(space);
     this.mainService.onSpace = space;
   }
   onSubmit() {
@@ -115,11 +113,14 @@ export class PurchaseComponent implements OnInit {
       this.mainService.selected
     ].splice(i, 1);
   }
+  // tabchange(val) {
+  //   this.mainService.selected = `${val}`;
+  // }
   addTab() {
     if (this.mainService.onSpace != 'custom') {
       let indx = this.rearrange_onAdd(this.mainService.onSpace);
       let space = this.mainService.onSpace;
-      this.mainService.parentTab[space].splice(indx - 1, 0, indx);
+      this.mainService.parentTab[space].splice(indx - 1, 0, `${indx}`);
       this.pushto_nece_array(indx - 1);
     } else {
       this.mainService.parentTab.custom.push('new');

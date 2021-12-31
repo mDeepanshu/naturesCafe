@@ -21,7 +21,7 @@ export class TableCardComponent implements OnInit {
     if (this.space == 'custom') {
       this.total =
         this.mainService.amount[this.space][
-          this.mainService.amount[this.space].length - 1
+          this.mainService.parentTab.custom.indexOf(this.number)
         ];
     } else {
       this.total = this.mainService.amount[this.space][this.number - 1];
@@ -36,7 +36,13 @@ export class TableCardComponent implements OnInit {
   view() {
     this.router.navigate(['purchase']);
     this.mainService.onSpace = this.space;
-    this.mainService.selected = this.number - 1;
     this.mainService.onLink = 1;
+    if (this.space == 'custom') {
+      this.mainService.selected = this.mainService.parentTab.custom.indexOf(
+        this.number
+      );
+    } else {
+      this.mainService.selected = this.number - 1;
+    }
   }
 }

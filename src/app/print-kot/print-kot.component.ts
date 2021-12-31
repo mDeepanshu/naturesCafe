@@ -21,7 +21,7 @@ export class PrintKotComponent implements OnInit {
     minutes = Number(minutes) < 10 ? '0' + minutes : minutes;
     this.timePrint = hours + ':' + minutes + ' ' + ampm;
     this.mainService.kotPrintArray.subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       // console.log(this.itemDetails);
       this.itemDetails = data.mainArr;
       this.tableNumber = Number(data.tableNumber) + 1;

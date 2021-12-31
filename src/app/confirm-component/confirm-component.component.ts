@@ -26,7 +26,7 @@ export class ConfirmComponentComponent implements OnInit {
     this.dialogRef.close();
   }
   radioChange(val) {
-    console.log(val);
+    this.confirmPafeInfo.discountAmount = 0;
     this.radioValue = val;
   }
   onValInp(val) {

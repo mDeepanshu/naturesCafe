@@ -22,7 +22,6 @@ export class PrintPageComponent implements OnInit {
       this.d.getMonth() + 1
     }/${this.d.getFullYear()}`;
     this.mainService.printArray.subscribe((data) => {
-      console.log(data);
       if (data.discountAmount > 0) {
         this.discountAmount = data.discountAmount;
         this.discountType = data.discountType;

@@ -163,13 +163,13 @@ export class MainServiceService {
             reject('http request failed' + responseData.message);
           } else {
             response(responseData.message);
-            console.log(responseData.message);
+            // console.log(responseData.message);
           }
         });
     });
   }
   save_and_print(onTab, onSpace) {
-    console.log(this.amount[onSpace][onTab]);
+    // console.log('this.amount[onSpace][onTab]');
     this.purchaseDetail = {
       billNo: `${Date.now().toString(36)}`,
       date: new Date(),
@@ -181,7 +181,7 @@ export class MainServiceService {
     };
     const dialogRef = this.dialog.open(ConfirmComponentComponent, {
       width: '550px',
-      height: '300px',
+      height: '200px',
       data: this.purchaseDetail,
     });
     dialogRef.afterClosed().subscribe((result) => {
